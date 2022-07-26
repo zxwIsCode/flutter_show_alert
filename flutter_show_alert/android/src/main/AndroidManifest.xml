@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools"
+package="com.example.flutter_show_alert">
+
+<uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+
+<application
+    android:label="小插件"
+    android:name=".NowApplication"
+    >
+    <activity
+        android:name=".CjActivity"
+        android:exported="false" />
+    <activity
+        android:name=".ShowActivity"
+        android:exported="false" />
+
+    <service
+        android:name=".TimeService"
+         />
+
+    <receiver
+        android:name=".MyAppWidgetProvider"
+        >
+        <intent-filter>
+            <action android:name="android.appwidget.action.APPWIDGET.DELETE" />
+            <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+        </intent-filter>
+
+        <meta-data
+            android:name="android.appwidget.provider"
+            android:resource="@xml/xbj_sx" />
+    </receiver>
+
+    <activity
+        android:name=".MainActivity"
+        android:exported="true">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+    </activity>
+</application>
+
+</manifest>
