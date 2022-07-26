@@ -3,7 +3,7 @@ import 'dart:async';
 
 import 'package:flutter/services.dart';
 
-typedef void EventCallback(args);
+typedef void EventCallback(args,args2);
 class FlutterShowAlert {
   static const MethodChannel _channel = MethodChannel('flutter_show_alert');
   static EventCallback? _callback;
@@ -26,7 +26,13 @@ class FlutterShowAlert {
       String? value = map["isSucc"];
 
       print("demo event data : $value");
-      _callback!(value);
+      _callback!(value,0);
+    }
+    else if(map["event"] == "updateEvent") {
+      String? value = map["isSucc"];
+
+      print("demo event data : $value");
+      _callback!(value,0);
     }
   }
 
@@ -60,6 +66,11 @@ class FlutterShowAlert {
 
   static Future<String?> get clickBtn async {
     final String? content = await _channel.invokeMethod('clickBtn');
+    return content;
+  }
+
+  static Future<String?> get updateBtn async {
+    final String? content = await _channel.invokeMethod('updateBtn');
     return content;
   }
 }

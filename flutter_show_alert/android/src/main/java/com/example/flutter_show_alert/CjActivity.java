@@ -14,10 +14,12 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RemoteViews;
 
 import androidx.annotation.RequiresApi;
 
 import io.flutter.embedding.android.FlutterActivity;
+
 
 public class CjActivity extends FlutterActivity {
     private Button dj_cj;
@@ -40,8 +42,29 @@ public class CjActivity extends FlutterActivity {
 
     }
 
+    public static void get_BS(String a,String b) {
+//        SharedPreferences sharedPreferences=NowApplication.app_getContext().getSharedPreferences("sp",MODE_PRIVATE);
+//        SharedPreferences.Editor editor=sharedPreferences.edit();
+//        editor.putString("bs",a);
+//        editor.putString("money",b);
+//        editor.commit();
+
+        RemoteViews remoteViews = new RemoteViews(NowApplication.app_getContext().getPackageName(),R.layout.xbj_xml);
+        remoteViews.setTextViewText(R.id.txt_bs,a);
+        remoteViews.setTextViewText(R.id.txt_money,b);
+
+        AppWidgetManager manager = AppWidgetManager.getInstance(NowApplication.app_getContext());
+        ComponentName componentName =new ComponentName(NowApplication.app_getContext(),MyAppWidgetProvider.class);
+        manager.updateAppWidget(componentName,remoteViews);
+
+//        //a 步数 b 余额
+//        SPUtils.getInstance().put("bs",a);
+//        SPUtils.getInstance().put("money",b);
+    }
+
+
     @RequiresApi(api = Build.VERSION_CODES.M)
-    public  static void Cj_AppWeight() {
+    public  static String Cj_AppWeight() {
         PendingIntent successCallback;
         Context  context = NowApplication.app_getContext();
         AppWidgetManager appWidgetManager = null;
@@ -68,6 +91,7 @@ public class CjActivity extends FlutterActivity {
                 appWidgetManager.requestPinAppWidget(myProvider, null, successCallback);
             }
         }
+        return "1";
     }
 
 

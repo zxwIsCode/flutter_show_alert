@@ -90,6 +90,17 @@ public class FlutterShowAlertPlugin implements FlutterPlugin, MethodCallHandler 
       }
 
     }
+    else if (call.method.equals("updateBtn")) {
+      System.out.print("android层：updateBtn");
+      CjActivity.get_BS("100","30.00");
+//      result.success("allmsg");
+      if (eventSink != null) {
+        Map map = new HashMap();
+        map.put("event","updateEvent");
+        map.put("isSucc","1");
+        eventSink.success(map);
+      }
+    }
     else {
       result.notImplemented();
     }

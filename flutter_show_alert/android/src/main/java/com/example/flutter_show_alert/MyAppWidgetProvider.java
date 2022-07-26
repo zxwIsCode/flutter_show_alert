@@ -30,6 +30,7 @@ public class MyAppWidgetProvider extends AppWidgetProvider {
             PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
             remoteViews.setOnClickPendingIntent(R.id.xbj_re, pendingIntent);
             remoteViews.setTextViewText(R.id.txt_bs,"0");
+            remoteViews.setTextViewText(R.id.txt_money,"0");
             appWidgetManager.updateAppWidget(appwidgetId,remoteViews);
         }
 
@@ -63,7 +64,7 @@ public class MyAppWidgetProvider extends AppWidgetProvider {
     @Override
     public void onEnabled(Context context) {
         // Enter relevant functionality for when the first widget is created
-        context.startService(new Intent(context,TimeService.class) );
+//        context.startService(new Intent(context,TimeService.class) );
     }
     /*
      * 当最后一个该窗口小部件删除时调用该方法
@@ -71,7 +72,7 @@ public class MyAppWidgetProvider extends AppWidgetProvider {
     @Override
     public void onDisabled(Context context) {
         // Enter relevant functionality for when the last widget is disabled
-        context.stopService(new Intent(context,TimeService.class));
+//        context.stopService(new Intent(context,TimeService.class));
     }
     /*
      * 当小部件大小改变时

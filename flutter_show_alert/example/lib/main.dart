@@ -22,12 +22,15 @@ class _MyAppState extends State<MyApp> {
   String? _clickStr = "";
   String? _watchStr = "";
 
+  String? _steps;
+  String? _moneys;
+
   @override
   void initState() {
     super.initState();
     // 初始化dart层类，先监听
     FlutterShowAlert flugin = FlutterShowAlert();
-    FlutterShowAlert.listener((args) {
+    FlutterShowAlert.listener((args,args2) {
       print("args = $args");
       setState(() {
         _watchStr = args;
@@ -91,9 +94,23 @@ class _MyAppState extends State<MyApp> {
                     _clickStr = clickStr;
                   });
                 },
-                child: Text('flutter监听安卓派发: $_clickStr\n'),
+                child: Text('flutter添加悬浮框: $_clickStr\n'),
               ),
               Text('flutter监听的变化: $_watchStr\n'),
+
+              InkWell(
+                onTap: () async {
+                  print("更新悬浮框数据");
+                  String? clickStr;
+                  clickStr = await FlutterShowAlert.updateBtn;
+
+                  setState(() {
+                    _clickStr = clickStr;
+                  });
+                },
+                child: Text('flutter更新悬浮框数据: $_clickStr\n'),
+              ),
+              Text('更新数据为: --- 步数$_steps----金额$_moneys\n'),
 
 
 

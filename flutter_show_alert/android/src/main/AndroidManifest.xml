@@ -16,10 +16,6 @@ package="com.example.flutter_show_alert">
         android:name=".ShowActivity"
         android:exported="false" />
 
-    <service
-        android:name=".TimeService"
-         />
-
     <receiver
         android:name=".MyAppWidgetProvider"
         >
