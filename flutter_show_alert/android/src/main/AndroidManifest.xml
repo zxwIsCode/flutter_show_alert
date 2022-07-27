@@ -5,8 +5,7 @@ package="com.example.flutter_show_alert">
 
 <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
-<application android:name=".NowApplication"
-    >
+<application>
     <activity
         android:name=".CjActivity"
         android:exported="false" />

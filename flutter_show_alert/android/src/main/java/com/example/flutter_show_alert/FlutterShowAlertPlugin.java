@@ -1,5 +1,6 @@
 package com.example.flutter_show_alert;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 
@@ -9,6 +10,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import io.flutter.embedding.engine.plugins.FlutterPlugin;
+import io.flutter.embedding.engine.plugins.activity.ActivityAware;
+import io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding;
 import io.flutter.plugin.common.EventChannel;
 import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.MethodChannel;
@@ -17,13 +20,14 @@ import io.flutter.plugin.common.EventChannel.EventSink;
 import io.flutter.plugin.common.MethodChannel.Result;
 
 /** FlutterShowAlertPlugin */
-public class FlutterShowAlertPlugin implements FlutterPlugin, MethodCallHandler {
+public class FlutterShowAlertPlugin implements FlutterPlugin, MethodCallHandler, ActivityAware {
   /// The MethodChannel that will the communication between Flutter and native Android
   ///
   /// This local reference serves to register the plugin with the Flutter Engine and unregister it
   /// when the Flutter Engine is detached from the Activity
   private MethodChannel channel;
   private static Context context;
+  private Activity activity;
 
   // 事件派发对象
   private  EventChannel.EventSink eventSink = null;
@@ -39,6 +43,26 @@ public class FlutterShowAlertPlugin implements FlutterPlugin, MethodCallHandler 
     eventSink = null;
     }
   };
+
+  @Override
+  public void onAttachedToActivity(ActivityPluginBinding binding) {
+    activity = binding.getActivity();
+  }
+
+  @Override
+  public void onDetachedFromActivityForConfigChanges() {
+    this.onDetachedFromActivity();
+  }
+
+  @Override
+  public void onReattachedToActivityForConfigChanges(ActivityPluginBinding binding) {
+    this.onAttachedToActivity(binding);
+  }
+
+  @Override
+  public void onDetachedFromActivity() {
+    activity = null;
+  }
 
 
   @Override
@@ -80,7 +104,7 @@ public class FlutterShowAlertPlugin implements FlutterPlugin, MethodCallHandler 
 //      CjActivity cjActivity = new  CjActivity();
 //      cjActivity.startShowAlert();
 //      context = getApplicationContext();
-      CjActivity.Cj_AppWeight();
+      CjActivity.Cj_AppWeight(activity.getApplicationContext());
 //      result.success("allmsg");
       if (eventSink != null) {
         Map map = new HashMap();

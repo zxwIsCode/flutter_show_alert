@@ -24,7 +24,7 @@ import io.flutter.embedding.android.FlutterActivity;
 public class CjActivity extends FlutterActivity {
     private Button dj_cj;
     private PendingIntent successCallback;
-  //  private Context context;
+//    private Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,10 +64,15 @@ public class CjActivity extends FlutterActivity {
 
 
     @RequiresApi(api = Build.VERSION_CODES.M)
-    public  static String Cj_AppWeight() {
+    public  static String Cj_AppWeight(Context context) {
         PendingIntent successCallback;
-        Context  context = NowApplication.app_getContext();
+//        Context  context = NowApplication.app_getContext();
+//        Context  context = NowApplication.getApplication().getApplicationContext();
+        System.out.print("context===");
+//        Log.d(context, "context");
+//        Log.d("context===",context);
         AppWidgetManager appWidgetManager = null;
+
 //        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             appWidgetManager = context.getSystemService(AppWidgetManager.class);
 //        }
