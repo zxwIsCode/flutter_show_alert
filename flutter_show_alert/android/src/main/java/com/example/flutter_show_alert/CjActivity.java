@@ -42,19 +42,19 @@ public class CjActivity extends FlutterActivity {
 
     }
 
-    public static void get_BS(String a,String b) {
+    public static void get_BS(Context context,String a,String b) {
 //        SharedPreferences sharedPreferences=NowApplication.app_getContext().getSharedPreferences("sp",MODE_PRIVATE);
 //        SharedPreferences.Editor editor=sharedPreferences.edit();
 //        editor.putString("bs",a);
 //        editor.putString("money",b);
 //        editor.commit();
 
-        RemoteViews remoteViews = new RemoteViews(NowApplication.app_getContext().getPackageName(),R.layout.xbj_xml);
+        RemoteViews remoteViews = new RemoteViews(context.getPackageName(),R.layout.xbj_xml);
         remoteViews.setTextViewText(R.id.txt_bs,a);
         remoteViews.setTextViewText(R.id.txt_money,b);
 
-        AppWidgetManager manager = AppWidgetManager.getInstance(NowApplication.app_getContext());
-        ComponentName componentName =new ComponentName(NowApplication.app_getContext(),MyAppWidgetProvider.class);
+        AppWidgetManager manager = AppWidgetManager.getInstance(context);
+        ComponentName componentName =new ComponentName(context,MyAppWidgetProvider.class);
         manager.updateAppWidget(componentName,remoteViews);
 
 //        //a 步数 b 余额

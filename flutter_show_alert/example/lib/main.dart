@@ -102,7 +102,7 @@ class _MyAppState extends State<MyApp> {
                 onTap: () async {
                   print("更新悬浮框数据");
                   String? clickStr;
-                  clickStr = await FlutterShowAlert.updateBtn;
+                  clickStr = await FlutterShowAlert.updateBtn("200","30");
 
                   setState(() {
                     _clickStr = clickStr;

@@ -69,8 +69,10 @@ class FlutterShowAlert {
     return content;
   }
 
-  static Future<String?> get updateBtn async {
-    final String? content = await _channel.invokeMethod('updateBtn');
+  static Future<String?> updateBtn(String step,String moneyCount) async {
+    // Map<String,dynamic> dataMap = {"step":step,"moneyCount":moneyCount};
+    // print("dataMap === $dataMap");
+    final String? content = await _channel.invokeMethod('updateBtn',{"step":step,"moneyCount":moneyCount});
     return content;
   }
 }

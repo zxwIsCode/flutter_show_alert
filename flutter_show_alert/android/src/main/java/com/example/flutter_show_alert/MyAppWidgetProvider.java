@@ -7,9 +7,14 @@ import android.appwidget.AppWidgetProvider;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.RelativeLayout;
 import android.widget.RemoteViews;
 
-import io.flutter.embedding.android.FlutterActivity;
+
+
+import android.util.Log;
+import android.view.View;
+
 
 /**
  * Implementation of App Widget functionality.
@@ -25,9 +30,20 @@ public class MyAppWidgetProvider extends AppWidgetProvider {
         // There may be multiple widgets active, so update all of them
         for(int appwidgetId : appWidgetIds){
             @SuppressLint("RemoteViewLayout") RemoteViews remoteViews = new RemoteViews(context.getPackageName(),R.layout.xbj_xml);
+
+//            int a=  remoteViews.getLayoutId();
+//            View view = view.findViewById();
+//            view.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    Log.d("TAG", "onClick: 小插件点击");
+//                }
+//            });
+            Intent intents = context.getPackageManager().getLaunchIntentForPackage("com.wsdz.sportsgold");
+            intents.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             Intent intent = new Intent(context, ShowActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_DOCUMENT | Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
-            PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
+            PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intents, 0);
             remoteViews.setOnClickPendingIntent(R.id.xbj_re, pendingIntent);
             remoteViews.setTextViewText(R.id.txt_bs,"0");
             remoteViews.setTextViewText(R.id.txt_money,"0");
@@ -40,7 +56,9 @@ public class MyAppWidgetProvider extends AppWidgetProvider {
      */
     @Override
     public void onReceive(Context context, Intent intent) {
+
         super.onReceive(context, intent);
+        Log.d("TAG", "onClick: 小插件点击");
     }
     /*
      * 当小部件从备份恢复时调用该方法

@@ -3,6 +3,7 @@ package com.example.flutter_show_alert;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 
@@ -116,7 +117,9 @@ public class FlutterShowAlertPlugin implements FlutterPlugin, MethodCallHandler,
     }
     else if (call.method.equals("updateBtn")) {
       System.out.print("android层：updateBtn");
-      CjActivity.get_BS("100","30.00");
+      String step = call.argument("step");
+      String moneyCount = call.argument("moneyCount");
+      CjActivity.get_BS(activity.getApplicationContext(),step,moneyCount);
 //      result.success("allmsg");
       if (eventSink != null) {
         Map map = new HashMap();
@@ -128,6 +131,10 @@ public class FlutterShowAlertPlugin implements FlutterPlugin, MethodCallHandler,
     else {
       result.notImplemented();
     }
+  }
+
+  public static  void  jumpToMain() {
+    Log.d("tag","eww");
   }
 
   @Override
