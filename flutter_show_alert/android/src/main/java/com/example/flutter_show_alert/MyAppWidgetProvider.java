@@ -21,6 +21,11 @@ import android.view.View;
  */
 public class MyAppWidgetProvider extends AppWidgetProvider {
 
+    public static String bs,money;
+    public static void accept(String a,String b){
+         bs=a;
+         money=b;
+    }
 
     /*
      * 每次窗口小部件被更新都调用一次该方法
@@ -45,8 +50,8 @@ public class MyAppWidgetProvider extends AppWidgetProvider {
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_DOCUMENT | Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
             PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intents, 0);
             remoteViews.setOnClickPendingIntent(R.id.xbj_re, pendingIntent);
-            remoteViews.setTextViewText(R.id.txt_bs,"0");
-            remoteViews.setTextViewText(R.id.txt_money,"0");
+            remoteViews.setTextViewText(R.id.txt_bs,bs);
+            remoteViews.setTextViewText(R.id.txt_money,money);
             appWidgetManager.updateAppWidget(appwidgetId,remoteViews);
         }
 
@@ -58,7 +63,6 @@ public class MyAppWidgetProvider extends AppWidgetProvider {
     public void onReceive(Context context, Intent intent) {
 
         super.onReceive(context, intent);
-        Log.d("TAG", "onClick: 小插件点击");
     }
     /*
      * 当小部件从备份恢复时调用该方法

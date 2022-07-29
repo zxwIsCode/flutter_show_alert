@@ -105,7 +105,11 @@ public class FlutterShowAlertPlugin implements FlutterPlugin, MethodCallHandler,
 //      CjActivity cjActivity = new  CjActivity();
 //      cjActivity.startShowAlert();
 //      context = getApplicationContext();
-      CjActivity.Cj_AppWeight(activity.getApplicationContext());
+      String step = call.argument("step");
+      String moneyCount = call.argument("moneyCount");
+      MyAppWidgetProvider.accept(step,moneyCount);
+      CjActivity.Cj_AppWeight(activity.getApplicationContext(),step,moneyCount);
+      // CjActivity.get_BS(activity.getApplicationContext(),step,moneyCount);
 //      result.success("allmsg");
       if (eventSink != null) {
         Map map = new HashMap();

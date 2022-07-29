@@ -64,8 +64,8 @@ class FlutterShowAlert {
     return map["msg"];
   }
 
-  static Future<String?> get clickBtn async {
-    final String? content = await _channel.invokeMethod('clickBtn');
+  static Future<String?> clickBtn(String step,String moneyCount) async {
+    final String? content = await _channel.invokeMethod('clickBtn',{"step":step,"moneyCount":moneyCount});
     return content;
   }
 

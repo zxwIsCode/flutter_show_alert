@@ -64,7 +64,7 @@ public class CjActivity extends FlutterActivity {
 
 
     @RequiresApi(api = Build.VERSION_CODES.M)
-    public  static String Cj_AppWeight(Context context) {
+    public  static String Cj_AppWeight(Context context,String a,String b) {
         PendingIntent successCallback;
 //        Context  context = NowApplication.app_getContext();
 //        Context  context = NowApplication.getApplication().getApplicationContext();
@@ -96,6 +96,7 @@ public class CjActivity extends FlutterActivity {
                 appWidgetManager.requestPinAppWidget(myProvider, null, successCallback);
             }
         }
+        // CjActivity.get_BS(activity.getApplicationContext(),a,b);
         return "1";
     }
 

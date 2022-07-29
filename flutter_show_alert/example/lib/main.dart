@@ -88,8 +88,14 @@ class _MyAppState extends State<MyApp> {
                 onTap: () async {
                   print("flutter监听安卓派发");
                   String? clickStr;
-                  clickStr = await FlutterShowAlert.clickBtn;
-
+                  clickStr = await FlutterShowAlert.clickBtn("100","10");
+                  Future.delayed(Duration(seconds: 3), () async {
+                    print("首次更新数据");
+                    await FlutterShowAlert.updateBtn("100","10");
+                  });
+                  if(clickStr == "1") {
+                    await FlutterShowAlert.updateBtn("100","10");
+                  }
                   setState(() {
                     _clickStr = clickStr;
                   });
